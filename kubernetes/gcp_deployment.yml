@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: noticeservice-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: noticeservice-deployment
+  template:
+    metadata:
+      labels:
+        app: noticeservice-deployment
+    spec:
+      containers:
+      - name: noticeservice-deployment
+        image: ${IMAGE}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          protocol: TCP
