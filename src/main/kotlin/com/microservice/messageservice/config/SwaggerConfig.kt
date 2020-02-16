@@ -1,4 +1,4 @@
-package com.microservice.noticservice.config
+package com.microservice.messageservice.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

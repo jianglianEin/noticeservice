@@ -1,11 +1,11 @@
-package com.microservice.noticservice
+package com.microservice.messageservice
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class NoticeApplication
+class MessageApplication
 
 fun main(args: Array<String>) {
-    runApplication<NoticeApplication>(*args)
+    runApplication<MessageApplication>(*args)
 }

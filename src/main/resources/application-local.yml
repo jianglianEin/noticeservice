@@ -1,1 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:54322/message
+  application:
+    name: message-service-API
+
 env: "local"
+
+microservice:
+  peopleservice:
+    url: localhost
+    prot: 8000
+
