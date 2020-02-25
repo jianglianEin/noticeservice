@@ -1,6 +1,6 @@
 ---
 applications:
-  - name: notice
+  - name: messageservice
     memory: 666M
     buildpack: java_buildpack
     path: build/libs/notice-0.0.1-SNAPSHOT.jar
