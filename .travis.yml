@@ -14,32 +14,56 @@ env:
   global:
     # Do not prompt for user input when using any SDK methods.
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
+#################### cf ####################
 before_install:
-  - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf "$HOME/google-cloud-sdk"; curl https://sdk.cloud.google.com | bash > /dev/null; fi
-  # This line is critical. We setup the SDK to take precedence in our
-  # environment over the old SDK that is already on the machine.
-  - source $HOME/google-cloud-sdk/path.bash.inc
-  - gcloud components update kubectl
-  - gcloud version
-
   - chmod +x ./gradlew
+
 script:
-  # echo env var set on ci
-  - sh ./script/placeholder_convert_to_real_data.sh
-  - cat ./kubernetes/gcp_deployment.yml
-  - cat ./docker-entrypoint.sh
+  - sh ./script/placeholder_convert_to_real_data_cf.sh
+  - cat ./src/main/resources/application.yml
+  - ./gradlew check
+  - ./gradlew --console=plain clean download
+  - ./gradlew --console=plain clean build --no-daemon
 
-  # init gcloud auth
-  - gcloud auth activate-service-account --key-file client-secret.json
-  - gcloud config set project ein-final-year-project
-  - gcloud config set compute/zone asia-northeast1-a
-  - gcloud components update
+deploy:
+  provider: cloudfoundry
+  username: 913057041@qq.com
+  password: Ftjs1998226@
+  api: https://api.run.pivotal.io
+  organization: jianglianEin
+  space: development
+  app_name: jianglianEin_messageservice
+  on:
+    repo: jianglianEin/messageservice
 
-  # get kubeconfig
-  - gcloud container clusters get-credentials final-year-project-cluster
-
-  # create docker add tag with latest git commit id
-  - sh ./script/build_docker_with_latest_commit_id.sh
-
-  - sh ./script/update_docker_run_on_the_gke.sh
-  - sh ./script/update_docker_run_on_the_gke.sh
+##########################gcp#######################################
+#before_install:
+#  - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf "$HOME/google-cloud-sdk"; curl https://sdk.cloud.google.com | bash > /dev/null; fi
+#  # This line is critical. We setup the SDK to take precedence in our
+#  # environment over the old SDK that is already on the machine.
+#  - source $HOME/google-cloud-sdk/path.bash.inc
+#  - gcloud components update kubectl
+#  - gcloud version
+#
+#  - chmod +x ./gradlew
+#script:
+#  # echo env var set on ci
+#  - sh ./script/placeholder_convert_to_real_data.sh
+#  - cat ./kubernetes/gcp_deployment.yml
+#  - cat ./docker-entrypoint.sh
+#
+#  # init gcloud auth
+#  - gcloud auth activate-service-account --key-file client-secret.json
+#  - gcloud config set project ein-final-year-project
+#  - gcloud config set compute/zone asia-northeast1-a
+#  - gcloud components update
+#
+#  # get kubeconfig
+#  - gcloud container clusters get-credentials final-year-project-cluster
+#
+#  # create docker add tag with latest git commit id
+#  - sh ./script/build_docker_with_latest_commit_id.sh
+#
+#  - sh ./script/update_docker_run_on_the_gke.sh
+#  - sh ./script/update_docker_run_on_the_gke.sh

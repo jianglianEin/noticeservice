@@ -9,8 +9,7 @@ spring:
 
 env: "local"
 
-microservice:
-  peopleservice:
-    url: localhost
-    prot: 8000
-
+server:
+  #端口号
+  address: 10.144.78.161
+  port: 8002

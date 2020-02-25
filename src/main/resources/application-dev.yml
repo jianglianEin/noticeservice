@@ -1,10 +1,14 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    username: postgres
-    password: postgres
-    url: jdbc:postgresql://localhost:54322/message
+    username: jianglianein
+    password: ft1998226
+    url: jdbc:postgresql://45.32.133.122:5432/message
   application:
     name: message-service-API
 
 env: "dev"
+
+server:
+  #端口号
+  port: 8002
