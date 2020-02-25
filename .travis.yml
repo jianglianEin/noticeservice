@@ -33,9 +33,9 @@ deploy:
   api: https://api.run.pivotal.io
   organization: jianglianEin
   space: development
-  app_name: jianglianEin_messageservice
+  app_name: jianglianEin_notice
   on:
-    repo: jianglianEin/messageservice
+    repo: jianglianEin/notice
 
 ##########################gcp#######################################
 #before_install:
