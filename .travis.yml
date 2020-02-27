@@ -28,8 +28,8 @@ script:
 
 deploy:
   provider: cloudfoundry
-  username: 913057041@qq.com
-  password: Ftjs1998226@
+  username: ${USERNAME}
+  password: ${PASSWORD}
   api: https://api.run.pivotal.io
   organization: jianglianEin
   space: development
