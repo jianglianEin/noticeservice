@@ -11,5 +11,5 @@ env: "local"
 
 server:
   #端口号
-  address: 10.144.78.161
+#  address: 10.144.78.161
   port: 8002

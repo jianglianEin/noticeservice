@@ -6,6 +6,7 @@ import com.microservice.messageservice.entity.Commit
 import com.microservice.messageservice.service.CommitService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
@@ -25,7 +26,7 @@ class MessageResource {
         return "hello world\n" + env.env
     }
 
-    @GetMapping("/commit/create")
+    @PostMapping("/commit/create")
     fun createCommit(@RequestParam description: String,
                      @RequestParam announcer: String,
                      @RequestParam receiver: String,
@@ -35,7 +36,7 @@ class MessageResource {
         return commitService.create(newCommit)
     }
 
-    @GetMapping("/commit/update")
+    @PostMapping("/commit/update")
     fun updateCommit(@RequestParam description: String?,
                      @RequestParam isRead: Boolean?,
                      @RequestParam commitId: Int): Message {
@@ -43,17 +44,15 @@ class MessageResource {
         return commitService.update(isRead, description, commitId)
     }
 
-    @GetMapping("/commit/remove")
+    @PostMapping("/commit/remove")
     fun removeCommit(@RequestParam commitId: Int): Message {
 
         return commitService.remove(commitId)
     }
 
-    @GetMapping("/commit/callReceiver")
-    fun callReceiver(@RequestParam receiver: String): Message {
+    @PostMapping("/commit/getByReceiver")
+    fun getByReceiver(@RequestParam receiver: String): MutableList<Commit> {
 
         return commitService.getAllCommitByReceiver(receiver)
     }
-
-
 }

@@ -39,12 +39,7 @@ class CommitService {
         return Message(true, "commit remove success")
     }
 
-    fun getAllCommitByReceiver(receiver: String): Message {
-        val commitList = commitRepository.findAllByReceiver(receiver) ?:
-        return Message(false, "this receiver have no commit")
-
-        return Message(true, commitList)
+    fun getAllCommitByReceiver(receiver: String): MutableList<Commit> {
+        return commitRepository.findAllByReceiver(receiver)
     }
-
-
 }
