@@ -28,7 +28,7 @@ class CommitService {
             oldCommit.description = description
         }
         if (isRead != null) {
-            oldCommit.isRead = isRead
+            oldCommit.read = isRead
         }
         commitRepository.save(oldCommit)
         return Message(true, "commit update success")

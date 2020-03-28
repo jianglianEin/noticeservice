@@ -28,7 +28,7 @@ class Commit() {
     var cardId: Int? = null
 
     @Column(name = "is_read")
-    var isRead: Boolean? = false
+    var read: Boolean? = false
 
     constructor(description: String? = null,
                 announcer: String? = null,
@@ -41,6 +41,6 @@ class Commit() {
         this.receiver = receiver
         this.updateTime = updateTime
         this.cardId = cardId
-        this.isRead = isRead
+        this.read = isRead
     }
 }
