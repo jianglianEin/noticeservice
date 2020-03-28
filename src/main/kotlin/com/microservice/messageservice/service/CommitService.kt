@@ -23,22 +23,19 @@ class CommitService {
 
     fun update(isRead: Boolean?, description: String?, commitId: Int): Commit {
         val oldCommitOption = commitRepository.findById(commitId)
-        if (oldCommitOption.isEmpty) {
-            logger.warn { "no this commit"  }
+        if (oldCommitOption.isPresent) {
+            val oldCommit = oldCommitOption.get()
+            if (description != null) oldCommit.description = description
+            if (isRead != null) oldCommit.read = isRead
 
-            return Commit()
-        }
-        val oldCommit = oldCommitOption.get()
-        if (description != null) {
-            oldCommit.description = description
-        }
-        if (isRead != null) {
-            oldCommit.read = isRead
-        }
-        commitRepository.save(oldCommit)
-        logger.info { "commit update success" }
+            commitRepository.save(oldCommit)
+            logger.info { "commit update success" }
 
-        return oldCommit
+            return oldCommit
+        }
+        logger.warn { "no this commit"  }
+
+        return Commit()
     }
 
     fun remove(commitId: Int): Message {
