@@ -3,6 +3,7 @@ package com.microservice.messageservice.service
 import com.microservice.messageservice.dto.Message
 import com.microservice.messageservice.entity.Commit
 import com.microservice.messageservice.repository.CommitRepository
+import mu.KotlinLogging
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -11,6 +12,8 @@ class CommitService {
     @Autowired
     private lateinit var commitRepository: CommitRepository
 
+    private var logger = KotlinLogging.logger {}
+
     fun create(newCommit: Commit): Commit {
         val updateTime = System.currentTimeMillis()
         newCommit.updateTime = updateTime.toString()
@@ -18,10 +21,12 @@ class CommitService {
         return commitRepository.save(newCommit)
     }
 
-    fun update(isRead: Boolean?, description: String?, commitId: Int): Message {
+    fun update(isRead: Boolean?, description: String?, commitId: Int): Commit {
         val oldCommitOption = commitRepository.findById(commitId)
         if (oldCommitOption.isEmpty) {
-            return Message(false, "no this commit")
+            logger.warn { "no this commit"  }
+
+            return Commit()
         }
         val oldCommit = oldCommitOption.get()
         if (description != null) {
@@ -31,7 +36,9 @@ class CommitService {
             oldCommit.read = isRead
         }
         commitRepository.save(oldCommit)
-        return Message(true, "commit update success")
+        logger.info { "commit update success" }
+
+        return oldCommit
     }
 
     fun remove(commitId: Int): Message {

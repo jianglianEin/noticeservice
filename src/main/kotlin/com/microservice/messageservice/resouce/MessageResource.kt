@@ -39,7 +39,7 @@ class MessageResource {
     @PostMapping("/commit/update")
     fun updateCommit(@RequestParam description: String?,
                      @RequestParam isRead: Boolean?,
-                     @RequestParam commitId: Int): Message {
+                     @RequestParam commitId: Int): Commit {
 
         return commitService.update(isRead, description, commitId)
     }
