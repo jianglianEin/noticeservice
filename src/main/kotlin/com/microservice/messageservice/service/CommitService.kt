@@ -47,7 +47,7 @@ class CommitService {
         return commitRepository.findAllByReceiver(receiver)
     }
 
-    fun getCommentsByCardId(cardId: String): MutableList<Commit> {
+    fun getCommentsByCardId(cardId: Int): MutableList<Commit> {
         return commitRepository.findAllByCardId(cardId)
     }
 }

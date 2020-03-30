@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository
 @Repository
 interface CommitRepository: JpaRepository<Commit, Int> {
     fun findAllByReceiver(receiver: String): MutableList<Commit>
-    fun findAllByCardId(cardId: String): MutableList<Commit>
+    fun findAllByCardId(cardId: Int): MutableList<Commit>
 }
