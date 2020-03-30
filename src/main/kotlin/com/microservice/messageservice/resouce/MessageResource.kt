@@ -28,9 +28,9 @@ class MessageResource {
 
     @PostMapping("/commit/create")
     fun createCommit(@RequestParam description: String,
+                     @RequestParam cardId: Int,
                      @RequestParam announcer: String,
-                     @RequestParam receiver: String,
-                     @RequestParam cardId: Int): Commit {
+                     @RequestParam receiver: String?): Commit {
         val newCommit = Commit(description = description, announcer = announcer, receiver = receiver, cardId = cardId)
 
         return commitService.create(newCommit)
