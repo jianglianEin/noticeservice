@@ -55,4 +55,10 @@ class MessageResource {
 
         return commitService.getAllCommitByReceiver(receiver)
     }
+
+    @PostMapping("/commit/getByCardId")
+    fun getByCardId(@RequestParam cardId: String): MutableList<Commit> {
+
+        return commitService.getCommentsByCardId(cardId)
+    }
 }
