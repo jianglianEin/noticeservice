@@ -28,6 +28,8 @@ class CommitService {
             if (description != null) oldCommit.description = description
             if (isRead != null) oldCommit.read = isRead
 
+            oldCommit.updateTime = System.currentTimeMillis().toString()
+
             commitRepository.save(oldCommit)
             logger.info { "commit update success" }
 
