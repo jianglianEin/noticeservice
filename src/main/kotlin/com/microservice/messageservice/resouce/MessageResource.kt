@@ -56,6 +56,12 @@ class MessageResource {
         return commitService.getAllCommitByReceiver(receiver)
     }
 
+    @PostMapping("/commit/getByReceiverContaining")
+    fun getByReceiverContaining(@RequestParam receiver: String): MutableList<Commit> {
+
+        return commitService.getAllCommitByReceiverContaining(receiver)
+    }
+
     @PostMapping("/commit/getByCardId")
     fun getByCardId(@RequestParam cardId: Int): MutableList<Commit> {
 

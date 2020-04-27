@@ -49,6 +49,14 @@ class CommitService {
         return commitRepository.findAllByReceiver(receiver)
     }
 
+    fun getAllCommitByReceiverContaining(receiver: String): MutableList<Commit> {
+        val receiverCommit = commitRepository.findAllByReceiverContaining(receiver)
+        receiverCommit.removeIf {
+            it.receiver != receiver
+        }
+        return receiverCommit
+    }
+
     fun getCommentsByCardId(cardId: Int): MutableList<Commit> {
         return commitRepository.findAllByCardId(cardId)
     }
