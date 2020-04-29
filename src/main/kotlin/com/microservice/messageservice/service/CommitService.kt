@@ -52,7 +52,7 @@ class CommitService {
     fun getAllCommitByReceiverContaining(receiver: String): MutableList<Commit> {
         val receiverCommit = commitRepository.findAllByReceiverContaining(receiver)
         receiverCommit.removeIf {
-            it.receiver != receiver
+            !it.receiver!!.split(",").contains(receiver)
         }
         return receiverCommit
     }
