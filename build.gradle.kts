@@ -107,6 +107,7 @@ tasks.jacocoTestCoverageVerification {
 }
 
 tasks.build {
+    System.out.println("build")
     finalizedBy(tasks.jacocoTestCoverageVerification, tasks.jacocoTestReport)
 }
 
