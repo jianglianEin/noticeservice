@@ -1,0 +1,1 @@
+web: java -Dspring.profiles.active=${SPRING_PROFILES_ACTIVE} -Dserver.port=${PORT} -Dspring.datasource.driver-class-name=${DRIVER_CLASS} -Dspring.datasource.username=${DATABASE_USERNAME} -Dspring.datasource.password=${DATABASE_PASSWORD} -Dspring.datasource.url=${DATABASE_URL} -jar build/libs/notice-0.0.1-SNAPSHOT.jar
