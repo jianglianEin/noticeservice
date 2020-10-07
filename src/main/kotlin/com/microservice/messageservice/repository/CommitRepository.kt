@@ -9,4 +9,5 @@ interface CommitRepository: JpaRepository<Commit, Int> {
     fun findAllByReceiver(receiver: String): MutableList<Commit>
     fun findAllByCardId(cardId: Int): MutableList<Commit>
     fun findAllByReceiverContaining(receiver: String): MutableList<Commit>
+    fun findAllByAnnouncer(announcer: String): MutableList<Commit>
 }
